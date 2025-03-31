@@ -16,4 +16,14 @@ Para instalar las dependencias:
 ```
 pip install flask
 ```
+## Como correr el programa 
 
+Solo en la maquina local:
+```
+flask run
+```
+
+Para acceder desde cualquier maquina de la red:
+```
+flask run -h 0.0.0.0
+```

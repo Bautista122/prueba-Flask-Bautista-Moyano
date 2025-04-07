@@ -1,6 +1,6 @@
-from flask import Flask
+from flask import flask, url_for
 
-app = Flask(__name__)
+app = flask(__name__)
 
 @app.route("/boca")
 def boca():
@@ -15,3 +15,4 @@ def caras():
     from random import randint
     n = randint(1,caras)
     return f"<p>Tire un dado de {caras} caras, slaio {n}</p>"   
+

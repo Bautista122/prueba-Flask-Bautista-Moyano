@@ -1,5 +1,5 @@
 
-from flask import Flask, url_for
+from flask import Flask, url_for, render_template
 import sqlite3
 
 
@@ -36,7 +36,7 @@ def testDB():
 
 ##sin argumentos
 @app.route("/crear-usuario")
-def testCrear():
+def testCrearSinArgumentos():
    nombre = "leandro"
    email = "leandro@etec.uba.ar"
    AbrirConexion()
@@ -49,7 +49,7 @@ def testCrear():
 
 ##con ARGUMENTOS
 @app.route("/crear-usuario/<string:nombre>/<string:email>")
-def testCrear(nombre,email):
+def testCrearArgumentos(nombre,email):
    AbrirConexion()
    cursor = db.cursor()
    consulta = "INSERT INTO usuarios(usuario, email) VALUES (?,?)"
@@ -82,3 +82,17 @@ def hello():
    <br>
    <a href="Chau">Chau2</a>
 """
+@app.route("mostrar-datos-plantilla/<int:id>")
+def datos_plantilla(id):
+   AbrirConexion() 
+   cursor = db.cursor()
+   cursor.execute("SELECT id, usuario, email FROM usuarios WHERE id = ?;", (id,))
+   res = cursor.fetchone()
+   CerrarConexion()
+   usuario = None
+   email = None 
+   if res != None:
+      usuario = res['usuario'] 
+      email = res ['email']
+   return render_template("datos.html", id=id, usuario=usuario, email=email) 
+   

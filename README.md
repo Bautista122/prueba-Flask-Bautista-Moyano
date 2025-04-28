@@ -11,7 +11,7 @@ python -m venv .venv
 Para activar el entorno virtual:
 
 ```
-Source .venv/bin/activate
+source .venv/bin/activate
 ```
 
 Para instalar las dependencias:
